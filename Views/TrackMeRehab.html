@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html class="full" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="js/TrackBugs.js"></script>
+    <title> Support || Bugzilla Track List</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            module.TrackBugs.init();
+        });
+    </script>
+
+
+    <style>
+        .alert-success {
+            color: #163855;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+        
+        .marginClass {
+            margin: 10px;
+        }
+        
+        .bgBasicCol {
+            background-color: @gray-lighter;
+        }
+        
+        body {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            background: none;
+        }
+        
+        .logo {
+            color: #c09853;
+            font-weight: 800;
+            font-size: 8pt;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .full {
+            background: url(https://il2.picdn.net/shutterstock/videos/6245786/thumb/1.jpg) repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        
+        .field_set {
+            border: 2px #FF0 solid;
+        }
+        
+        .alert {
+            padding: 8px 35px 8px 14px;
+            margin-bottom: 18px;
+            color: #c09853;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            background-color: #fcf8e3;
+            border: 1px solid #fbeed5;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+        }
+        
+        .alert-info {
+            color: #3a87ad;
+            background-color: #d9edf7;
+            border-color: #bce8f1;
+        }
+    </style>
+
+    <script id='bugBugTmp' type='text/x-jquery-tmpl'>
+
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="text-left">
+                    <h3><span class="label label-default "><span class="label label-primary" data-toggle="collapse" data-target=#${Name} >+</span><b>Assigned_to : ${Name} </b></span> </h3>
+                    <img src="http://image.shutterstock.com/z/stock-vector-cute-little-boy-cartoon-running-to-catch-insects-isolated-on-white-background-348203336.jpg" class=" img-circle" alt="Cinque Terre" width="100" height="100">
+                </div>
+                <div class="panel-body " id=$ {Name}>
+                    {{each Value}} {{if redColor}}
+
+                    <ul calss="marginClass ">
+                        <li class=""> <span class="label label-danger "><b> Bug Id : ${id} </b> </span> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}} {{if emberColor}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <span class="label label-warning "><b> Bug Id : ${id} </b> </span></li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <b> Bug Id : ${id} </b> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+
+
+                    {{/if}} {{/if}}
+                    </br>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </script>
+    <script id='AssignedProductionTicketsTmp' type='text/x-jquery-tmpl'>
+
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="text-left">
+                    <h3><span class="label label-default "><b>Assigned_to : ${Name} </b></span> </h3>
+                    <img src="http://image.shutterstock.com/z/stock-vector-cute-little-boy-cartoon-running-to-catch-insects-isolated-on-white-background-348203336.jpg" class=" img-circle" alt="Cinque Terre" width="100" height="100">
+                </div>
+                <div class="panel-body" id="">
+                    {{each Value}} {{if redColor}}
+
+                    <ul calss="marginClass ">
+                        <li class=""> <span class="label label-danger "><b> Bug Id : ${id} </b> </span> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}} {{if emberColor}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <span class="label label-warning "><b> Bug Id : ${id} </b> </span></li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <b> Bug Id : ${id} </b> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+
+
+                    {{/if}} {{/if}}
+                    </br>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </script>
+    <script id='QAbugBugTmp' type='text/x-jquery-tmpl'>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-left">
+
+                    <h3><span class="label label-default "><b>Assigned_to : </b> <b>${Name} </b></span> </h3>
+                    <img src="http://i.istockimg.com/file_thumbview_approve/14676588/3/stock-illustration-14676588-creepy-bug.jpg" class=" img-circle" alt="Cinque Terre" width="50" height="50">
+                </div>
+                <div class="panel-body" id="">
+                    {{each Value}} {{if redColor}}
+
+                    <ul calss="marginClass ">
+                        <li class=""> <span class="label label-danger "><b> Bug Id : ${id} </b> </span> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}} {{if emberColor}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <span class="label label-warning "><b> Bug Id : ${id} </b> </span></li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <b> Bug Id : ${id} </b> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+
+
+                    {{/if}} {{/if}}
+                    </br>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </script>
+    <script id='ReadybugBugTmp' type='text/x-jquery-tmpl'>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="text-left">
+                    <h3><span class="label label-default "><b>Assigned_to : </b> <b>${Name} </b></span> </h3>
+                    <img src="http://1.bp.blogspot.com/-EJ-auOYvIew/VWLwzpRjlMI/AAAAAAAAASQ/ZinlNe_Lri8/s1600/canstockphoto22936954.png" class=" img-rounded" alt="Cinque Terre" width="100" height="100">
+                </div>
+                <div class="panel-body" id="">
+                    {{each Value}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <b> Bug Id : ${id} </b> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+
+
+
+                    </br>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+    <script id='UATbugBugTmp' type='text/x-jquery-tmpl'>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-left">
+                    <h3><span class="label label-default "><b>Assigned_to : </b> <b>${Name} </b></span> </h3>
+                    <img src="http://thumbs.dreamstime.com/t/bed-bug-cartoon-illustration-53636145.jpg" class=" img-circle" alt="Cinque Terre" width="100" height="100">
+                </div>
+                <div class="panel-body" id="">
+                    {{each Value}}
+                    <ul calss="marginClass">
+                        <li class=""> <span class="label label-default"><b> Bug Id : ${id} </b> </span></li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                        <li class=""> <b> Bug Created Date: </b> ${Creationtime} </li>
+                    </ul>
+
+                    </br>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+
+    <script id='ticketTmp' type='text/x-jquery-tmpl'>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-left">
+                    <h3><span class="label label-default "><b>Assigned_to : </b> <b>${Name} </b></span> </h3>
+                    <img src="http://thumbs.dreamstime.com/t/bed-bug-cartoon-illustration-53636145.jpg" class=" img-circle" alt="Cinque Terre" width="100" height="100">
+                </div>
+                <div class="panel-body" id="">
+                    {{each Value}} {{if redColor}}
+
+                    <ul calss="marginClass ">
+                        <li class=""> <span class="label label-danger "><b> Bug Id : ${id} </b> </span> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}} {{if emberColor}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <span class="label label-warning "><b> Bug Id : ${id} </b> </span></li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <b> Bug Id : ${id} </b> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+
+
+                    {{/if}} {{/if}}
+                    </br>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id='notAssigneBugsTemp' type='text/x-jquery-tmpl'>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-left">
+                    <h3><span class="label label-default "><b>Assigned_to : </b> <b>${Name} </b></span> </h3>
+                    <img src="http://www.fischerspestcontrol.com/assets/sleeping-bed-bug-cartoon-300x300.jpg" class=" img-circle" alt="Cinque Terre" width="100" height="100">
+                </div>
+                <div class="panel-body" id="">
+                    {{each Value}}
+                    <ul calss="marginClass">
+                        <li class=""> <span class="label label-default"><b> Bug Id : ${id} </b> </span></li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                        <li class=""> <b> Bug Created Date: </b> ${Creationtime} </li>
+                    </ul>
+
+                    </br>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+    <script id='ProductionSupportTmp' type='text/x-jquery-tmpl'>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-left">
+                    <h3><span class="label label-default "><b>Assigned_to : </b> <b>${Name} </b></span> </h3>
+                    <img src="http://thumbs.dreamstime.com/t/bed-bug-cartoon-illustration-53636145.jpg" class=" img-circle" alt="Cinque Terre" width="100" height="100">
+
+                </div>
+                <div class="panel-body" id="">
+                    {{each Value}} {{if redColor}}
+
+                    <ul calss="marginClass ">
+                        <li class=""> <span class="label label-danger "><b> Bug Id : ${id} </b> </span> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}} {{if emberColor}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <span class="label label-warning "><b> Bug Id : ${id} </b> </span></li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+                    {{else}}
+
+                    <ul calss="marginClass">
+                        <li class=""> <b> Bug Id : ${id} </b> </li>
+                        <li class=""> <b> Status : ${status} </b> </li>
+                        <li class=""> <b> Summary: </b> ${summary} </li>
+                    </ul>
+
+
+                    {{/if}} {{/if}}
+                    </br>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </script>
+
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-fixed-top ">
+        <div class="container">
+            <div class=" logo">
+                <h4>Support Bugzilla Tack List </h4></div>
+
+        </div>
+    </div>
+    </br>
+    </br>
+    </br>
+
+
+    <div id="bugCointainer" class="container">
+        </br>
+        <ul class="nav nav-tabs ">
+            <li class="active"><a data-toggle="tab" href="#controls">Search</a></li>
+        </ul>
+
+        <div class="tab-content ">
+            <div id="controls">
+                <h4><span class="label label-info">Search Bugs by target_milestone  <input  class="text-muted" type="text" id="target_milestone" value="Release - 4.18 ,Release - 4.19"> 
+               Search Bugs by product 
+               <input  class="text-muted" type="text" id="product" value="Rehab,LCCA Rehab" />
+                <input type="button" id="btnClik" value="Ok" onclick="module.TrackBugs.onclickSet();" />
+    
+                    </span>
+                
+                </h4>
+
+            </div>
+        </div>
+        <div class="panel panel-default ">
+            <div class="panel-body  ">
+                 <div id="error"  class="alert"style="display:none">
+                    
+                 </div>
+                
+                <div class="alert" id="mgsPanel">
+                     Please provide Bugzilla login credential below.Wait for few seconds or click on "Connect me now" button.  
+                </div>
+             
+                <div id="displayData" style="display:none">
+
+                    <ul class="nav nav-tabs">
+
+                        <li class="active"><a data-toggle="tab" href="#bugAssignedList">Assigned</a></li>
+                        <li><a data-toggle="tab" href="#assignedTickets">Assigned Tickets</a></li>
+                        <li><a data-toggle="tab" href="#QAbugList">Resolved</a></li>
+                        <li><a data-toggle="tab" href="#VerifiedbugList">Verified</a></li>
+                        <li><a data-toggle="tab" href="#bugNotAssignedList"> Not Assigned Bugs</a></li>
+                        <li><a data-toggle="tab" href="#bugNotAssignedUATList">Today's UATs</a></li>
+                        <li><a data-toggle="tab" href="#ticketNew">Today's  Production Tickets</a></li>
+                        <li><a data-toggle="tab" href="#SupportNew">Today's  Production Support</a></li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div id="bugAssignedList" class="tab-pane fade in active">
+                        </div>
+                        <div id="QAbugList" class="tab-pane fade "></div>
+                        <div id="VerifiedbugList" class="tab-pane fade "></div>
+                        <div id="bugNotAssignedList" class="tab-pane fade">
+                            Comming soon ...
+                        </div>
+                        <div id="bugNotAssignedUATList" class="tab-pane fade ">
+
+                        </div>
+
+                        <div id="ticketNew" class="tab-pane fade ">
+
+                        </div>
+
+                        <div id="SupportNew" class="tab-pane fade ">
+
+                        </div>
+
+                        <div id="assignedTickets" class="tab-pane fade ">
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="panel-footer alert-info">Note: System is including Saturday and Sunday as off now for calculating bug color status.
+            <h3> 
+            <input type="button" class="btn" id="btnClik1" value=" Fresh " />
+            <input class="btn btn-warning" type="button" id="btnClik2" value="Due for 2 days" />
+            <input class="btn btn-danger" type="button" id="btnClik3" value="Due for 5 days" />
+        </h3>
+            <div id="loginPanel ">
+                <label for="userName">User Name:</label>
+                <input type="text" class="form-control" id="userName" placeholder="Enter user name">
+                <span class="help-block">Please provide correct bugzilla user name. </span>
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                <span class="help-block">Please provide correct bugzilla password. </span>
+                <button type="button"  onclick="module.TrackBugs.connectMeNow();"class="btn btn-default">Connect me now</button>
+
+            </div>
+        </div>
+
+        <div class="panel-footer">@Created by Abhijt Mukherjee Year-2016</div>
+
+</body>
+
+</html>

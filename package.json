@@ -1,0 +1,19 @@
+{
+  "name": "pakage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "NodeServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NodeServer.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.13.4",
+    "jquery": "^2.2.3",
+    "mosca": "^1.1.2",
+    "mqtt": "^1.7.4",
+    "underscore": "1.8.3"
+  }
+}
