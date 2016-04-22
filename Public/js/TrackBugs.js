@@ -6,8 +6,8 @@ module.TrackBugs = (function () {
     var dataBaseDataRef;
     var target_Sprint = [];
     var product = [];
-    var userName ;
-    var Password ;
+    var userName;
+    var Password;
 
 
 
@@ -31,25 +31,16 @@ module.TrackBugs = (function () {
 
 
     var init = function () {
-
-        // refMyFireBase = new Firebase("https://bugzillatrack.firebaseio.com/");
-        //GetBugListFromDataBaseFirstTime("Rehab", "BugList");
         splitAndAdd();
-
-
-        //var dummyData =  [{id:58661}, {id: 58662}, {id: 91967}, { id:93899}, {id:95387}, {id:95250} ];
-
-        //PostJSONData(dummyData,"Rehab");
-
         connectBugzilla();
         repeateCheck();
     };
-var connectMeNow =  function()
-{   $("#mgsPanel").hide();
-    $("#error").hide();
- 
-    connectBugzilla();
-};
+    var connectMeNow = function () {
+        $("#mgsPanel").hide();
+        $("#error").hide();
+
+        connectBugzilla();
+    };
     var splitAndAdd = function () {
         product = [];
         target_Sprint = [];
@@ -130,7 +121,7 @@ var connectMeNow =  function()
         var obj = {
             id: data.id,
             status: data.status,
-            assigned_to: data.assigned_to,
+            assigned_to: data.assigned_to.split('@')[0],
             summary: data.summary,
             devStartDate: '12/10/2016',
             devExpectedEndDate: '12/10/2016',
@@ -355,16 +346,16 @@ var connectMeNow =  function()
                     rehabBugListViewModel.AssignedProductionTickets = [];
 
                     _.each(data.result.bugs, function (data) {
-                        if (data.component == "Production Tickets") {
-                            console.log(data);
+                        if (  data.component.search("Tickets") !=1 ) {
+                            
                             rehabBugListViewModel.ProductionTickets.push(dataMapp(data));
                             //rehabBugListViewModel.BugNotAssigned.push(dataMapp(data));
                             if (data.status == "ASSIGNED" || data.status == "REOPNED") {
-                                console.log(data);
+                                
                                 rehabBugListViewModel.AssignedProductionTickets.push(dataMapp(data));
                             } else {
                                 if (data.target_milestone == "---") {
-                                    console.log("---2");
+                                   
                                     rehabBugListViewModel.BugNotAssigned.push(dataMapp(data));
                                 }
 
@@ -372,19 +363,19 @@ var connectMeNow =  function()
 
                             rehabBugListViewModel.AssignedProductionTickets
 
-                        } else if (data.component == "Production Support") {
+                        } else if ( data.component.search("Support") !=1 ) {
                             rehabBugListViewModel.ProductionSupport.push(dataMapp(data));
                             if (data.target_milestone == "---") {
-                                console.log("---1");
+                                
                                 rehabBugListViewModel.BugNotAssigned.push(dataMapp(data));
                             }
 
                         } else if (data.creator.split('@')[1].toLocaleLowerCase() == "lcca.com") {
                             rehabBugListViewModel.UAT.push(dataMapp(data));
                             if (data.target_milestone == "---") {
-                            rehabBugListViewModel.BugNotAssigned.push(dataMapp(data));
+                                rehabBugListViewModel.BugNotAssigned.push(dataMapp(data));
                             }
-                            
+
 
                         } else {
                             //rehabBugListViewModel.BugNotAssigned.push(dataMapp(data));
@@ -405,7 +396,7 @@ var connectMeNow =  function()
                     $('#notAssigneBugsTemp').tmpl(setColorBasedOnCondition(groupByName(rehabBugListViewModel.BugNotAssigned))).appendTo('#bugNotAssignedList');
 
                     $("#assignedTickets").empty();
-                    console.log(rehabBugListViewModel.AssignedProductionTickets);
+                   
                     $('#AssignedProductionTicketsTmp').tmpl(setColorBasedOnCondition(groupByName(rehabBugListViewModel.AssignedProductionTickets))).appendTo('#assignedTickets');
 
 
@@ -451,25 +442,24 @@ var connectMeNow =  function()
             "url": "https://bugzilla.emids.com/jsonrpc.cgi",
             "type": "GET",
             success: function (data) {
-                 $("#error").hide();
+                $("#error").hide();
                 if (data.result != null) {
                     buildViewModel(data.result.bugs);
                     getproductionTicket();
 
-                }else
-                    {
-                        $("#error").show();
-                       
-                        $("#error").text("Incorrect UserName and Password .");
-                    }
+                } else {
+                    $("#error").show();
+
+                    $("#error").text("Incorrect UserName and Password .");
+                }
 
 
                 //console.log(arguments);
 
             },
             error: function (err) {
-             $("#error").show();
-             $("#error").text(err)
+                $("#error").show();
+                $("#error").text(err)
             }
         });
 
@@ -482,7 +472,7 @@ var connectMeNow =  function()
         rehabBugListViewModel: rehabBugListViewModel,
         onclickSet: onclickSet,
         getproductionTicket: getproductionTicket,
-        connectMeNow:connectMeNow
+        connectMeNow: connectMeNow
     };
 
 })();
