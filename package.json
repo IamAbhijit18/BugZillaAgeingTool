@@ -1,25 +1,19 @@
 {
-  "name": "pakage",
-  "version": "1.0.0",
-  "description": "Bug monitoring And bug ageing tool.",
-  "main": "BugzillaServerNode.js",
-    "engines": {
+  "name": "BugZillaAgeingTool",
+  "version": "0.2.5",
+  "description": "BugZilla Ageing Tool. ",
+  "engines": {
     "node": "5.9.1"
   },
+  "main": "BugzillaServerNode.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " node BugzillaServerNode.js"
+    "start": "node BugzillaServerNode.js"
   },
-  "author": "Abhijit Mukherjee.",
-  "license": "",
   "dependencies": {
-    "express": "4.13.4",
-    "jquery": "2.2.3",
-    "mosca": "1.1.2",
-    "mqtt": "1.7.4",
+    "express": "4.13.3",
     "underscore": "1.8.3"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/IamAbhijit18/BugZillaAgeingTool"
   },
@@ -28,4 +22,5 @@
     "heroku",
     "express"
   ],
+  "license": "MIT"
 }
