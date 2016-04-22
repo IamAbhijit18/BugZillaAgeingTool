@@ -18,7 +18,7 @@
     "mosca": "1.1.2",
     "mqtt": "1.7.4",
     "underscore": "1.8.3"
-  }
+  },
     "repository": {
     "type": "git",
     "url": "https://github.com/IamAbhijit18/BugZillaAgeingTool"
